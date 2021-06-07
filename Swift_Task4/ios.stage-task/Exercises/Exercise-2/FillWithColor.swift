@@ -12,9 +12,13 @@ final class FillWithColor {
             return image
         }
         
-        var resultImage = image
         let initialColor = image[row][column]
+        if newColor == initialColor {
+            return image
+        }
         
+        var resultImage = image
+
         visited = Array(repeating: Array(repeating: false, count: columnsCount), count: rowsCount)
         visited[row][column] = true
         resultImage[row][column] = newColor
@@ -24,6 +28,8 @@ final class FillWithColor {
     }
     
     func checkNeighbor(_ image: inout [[Int]], _ row: Int, _ column: Int, _ initialColor: Int, _ newColor: Int) {
+       
+        visited[row][column] = true
         
 //        check top neighbor
         if row != 0 {
